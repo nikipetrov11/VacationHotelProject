@@ -1,0 +1,158 @@
+<HTML> <HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT = "text/html;charset = UTF-8">
+<TITLE> Круиз </TITLE>
+<SCRIPT LANGUAGE = "JavaScript" >
+var i1 = 0 , i2 = 0, s=0, brn=0, z=0
+ 
+//телефона е ок
+ 
+function validPhone(phoneNumber){
+ 
+ 
+ 
+      var phoneno = /^([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
+            var phoneResult = phoneno.test(phoneNumber);
+ 
+            if(phoneResult == false)
+            {
+              alert('Моля въведете валиден телефонен номер!');
+              return false;
+            }
+            alert('Валиден телефонен номер!');      
+      return true;
+    }
+//името е ок
+function validName ( passedVal )
+{
+var c = passedVal.charAt(0)
+if ( passedVal == "" ) return false
+if ( c < "А" || c > "Я" ) return false
+for ( i = 0 ; i < passedVal.length ; i++ )
+{
+c = passedVal.charAt(i)
+if ( c != ' ' && c < "А" ) return false
+if ( c > "я" ) return false
+}
+alert("Името е OK")
+return true
+}
+ 
+//не знаем какво е 
+function izbor1 ( menu1 )
+{ i1 = menu1.selectedIndex } 
+ 
+function izbor2 ( menu2 )
+{ i2 = menu2.selectedIndex } 
+ 
+function submitIt ( f )
+{
+if ( !validName ( f.T1.value ) )
+{
+alert("Невалидно име!")
+f.T1.focus()
+f.T1.select()
+return false
+}
+if ( !validPhone ( f.T2.value ) )
+{
+alert("Невалиден телефон!")
+f.T2.focus()
+f.T2.select()
+return false
+}
+switch(i1)
+ {
+   case 0: brn=5; break
+   case 1: brn=7; break
+   case 2: brn=11;break
+ }
+ 
+ 
+ 
+//вид каюта
+if ( f.elements[3].checked)
+ { alert("Вътрешна");z = 50}
+else if ( f.elements[4].checked)
+ { alert("С прозорец"); z = 70}
+else if (f.elements[5].checked) 
+  {alert("С балкон"); z = 100}
+else 
+{
+    alert ("Апартамент");
+    z = 150
+}
+ 
+//услуги
+if (f.elements[7].checked)
+ {
+  alert("Напитки")
+  s += 100;
+}
+if (f.elements[8].checked)
+{
+  alert("Комуникации")
+  s += 50;
+}
+if (f.elements[9].checked) 
+{
+  alert("Закуска");
+  s += 30;
+}
+ 
+ 
+ s += brn * z;
+ 
+alert("OK! Сума за плащане: "+ s + " Евро")
+return true
+}
+document.write("<P ALIGN = Right><I>" + Date() + "<\/P> <\/I>" )
+</SCRIPT>
+</HEAD>
+<BODY bgcolor=lightblue>
+<H2> АЛЕКСАНДРА ТУР ПЛОВДИВ </H2>
+<H3> ЗАЯВКА ЗА КРУИЗ </H3>
+<FORM NAME = "F1" onSubmit = "return submitIt(document.F1)" >
+ 
+Задайте името си (на кирилица):
+<INPUT TYPE = "Text" NAME = "T1" SIZE = 40 > <P>
+ 
+Задайте телфон:
+<INPUT TYPE = "Text" NAME = "T2" SIZE = 10 > <P>
+ 
+  Цена за една нощувка: <BR>
+<TEXTAREA NAME = "TA1" COLS = 30 ROWS = 4 >
+Вътрешна каюта : 50 Евро
+Каюта с прозорец : 70 Евро
+Каюта с балкон : 100 Евро
+Апартамент : 150 Евро
+</TEXTAREA> <P>
+ 
+ 
+Изберете вид каюта:
+<INPUT TYPE = "Radio" NAME = "R1" VALUE = "Вътрешна" CHECKED > Вътрешна &nbsp;
+<INPUT TYPE = "Radio" NAME = "R1" VALUE = "С прозорец" > С прозорец &nbsp;
+<INPUT TYPE = "Radio" NAME = "R1" VALUE = "С балкон" > С балкон &nbsp;
+<INPUT TYPE = "Radio" NAME = "R1" VALUE = "Апартамент" > Апартамент <P>
+ 
+Изберете услуги: <BR>
+<INPUT TYPE = "Checkbox" NAME = "C1" VALUE = "Пакет напитки" CHECKED > Пакет напитки (+ 100 Евро) <BR>
+<INPUT TYPE = "Checkbox" NAME = "C2" VALUE = "Комуникации" > Комуникации (+ 50 Евро) <BR>
+<INPUT TYPE = "Checkbox" NAME = "C3" VALUE = "Закуска в каютата" > Закуска в каютата (+ 30 Евро) <P>
+ 
+Изберете продължителност: <BR>
+<SELECT NAME = "S1" onChange = "izbor1(this.form.S1)" >
+<OPTION VALUE = "5 нощувки" SELECTED > 5 нощувки </OPTION >
+<OPTION VALUE = "7 нощувки"> 7 нощувки </OPTION >
+<OPTION VALUE = "11 нощувки"> 11 нощувки </OPTION >
+</SELECT> <P>
+ 
+ 
+ 
+<TEXTAREA NAME = "TA2" COLS = 60 ROWS = 4 >
+Ако желаете, задайте тук въпроси:
+</TEXTAREA> <P>
+<INPUT TYPE = "Submit" NAME = "B1" VALUE = "Submit" > &nbsp;
+<INPUT TYPE = "Reset" NAME = "B2" VALUE = "Reset" >
+</FORM>
+</BODY>
+</HTML>
